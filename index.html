@@ -165,11 +165,12 @@
 			this.nodeB = nodeB;
 			this.length = 0;
 			this.show = false;
-			this.threshold = rand(20, 100)/100 * web.edgeThreshold;
+			this.lowerThreshold = rand(0, web.edgeThreshold);
+			this.upperThreshold = rand(this.lowerThreshold, web.edgeThreshold);
 		};
 		Edge.prototype.update = function() {
 			this.length = this.nodeA.distanceTo(this.nodeB);
-			if(this.length <= this.threshold)
+			if(this.length > this.lowerThreshold && this.length < this.upperThreshold)
 				this.show = true;
 			else
 				this.show = false;
